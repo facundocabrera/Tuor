@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="jquery.tour.css" type="text/css" />
+	<style>
+	    /** stylesheet for the page content **/
+            .feature {
+		width: 100px;
+		height: 100px;
+                
+                margin: 5px;
+                padding: 5px;
+
+                border: 1px solid #333;
+                background-color: #FFCC33;
+            }
+	</style>
+
+	<script src="jquery-1.5.2.js"></script>
+	<script src="jquery.tour.js"></script>
+	
+        <script>
+	    $(document).ready(function () {
+		$.tour({
+		    steps: [ // sequence of tooltips
+			{ el: $('.feature-1'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-2'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-3'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-4'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-5'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-6'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-7'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-8'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-9'), place: 'L', tooltip: $('.tooltip') },
+		    ]
+		});
+	    });
+	</script>
+    </head>
+    <body>
+	<h1>Website tour made easy</h1>
+
+        <!-- Website tour format -->
+	<div class="tour">
+	    <div class="tooltip tooltip-feature-1">
+		<h4>FEATURE 1</h4>
+		<p>The feature 1 bla bla bla bla bla bla</p>
+
+                <span class="arrow"></span><!-- add this if you want to show arrows -->
+	    </div>
+	</div>
+
+        <!-- Website content -->
+	<div class="feature feature-1">
+	    <p>Feature for the step 1</p>
+	</div>	
+	<div class="feature feature-2">
+	    <p>Feature for the step 2</p>
+	</div>	
+	<div class="feature feature-3">
+	    <p>Feature for the step 3</p>
+	</div>
+	<div class="feature feature-4">
+	    <p>Feature for the step 4</p>
+	</div>
+	<div class="feature feature-5">
+	    <p>Feature for the step 5</p>
+	</div>
+	<div class="feature feature-6">
+	    <p>Feature for the step 6</p>
+	</div>
+	<div class="feature feature-7">
+	    <p>Feature for the step 7</p>
+	</div>
+	<div class="feature feature-8">
+	    <p>Feature for the step 8</p>
+	</div>
+	<div class="feature feature-9">
+	    <p>Feature for the step 9</p>
+	</div>
+    </body>
+</html>
