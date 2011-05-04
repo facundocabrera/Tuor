@@ -194,7 +194,7 @@
         /**
          * Tour API.
          */
-        tour = {
+        tuor = {
             init : function (steps) {
                 sequencer.init(steps);
             },
@@ -210,13 +210,13 @@
                 $('body').live('keyup', function(ev) {
                     switch (ev.which) {
                         case 27: // esc key
-                            tour.stop();
+                            tuor.stop();
                             break;
                         case 37: // left arrow
-                            tour.prev();
+                            tuor.prev();
                             break;
                         case 39: // right arrow
-                            tour.next();
+                            tuor.next();
                             break;
                     }
                 });
@@ -265,12 +265,12 @@
     /**
      *
      */
-    $.tour = function(options) {
+    $.tuor = function(options) {
 	$.extend(settings, options);
 
-	tour.init(options.steps);
+	tuor.init(options.steps);
 
-        tour.start();
+        tuor.start();
     };
 
 })(jQuery, document, window);
