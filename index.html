@@ -21,8 +21,10 @@
 	
         <script>
 	    $(document).ready(function () {
-		$.tuor({
-		    steps: [ // sequence of tooltips
+		// Tuor instance.
+                $.tuor({
+                    autoplay: true, // we want autoplay ???
+                    steps: [ // sequence of tooltips
 			{ el: $('.feature-1'), place: 'L', tooltip: $('.tooltip') },
 			{ el: $('.feature-2'), place: 'L', tooltip: $('.tooltip') },
 			{ el: $('.feature-3'), place: 'L', tooltip: $('.tooltip') },

@@ -184,7 +184,9 @@
                     getTooltipCorners : function () {
                         var prop = position.calculate(el.el, el.place, el.tooltip),
                             corn = position.corners(el.tooltip);
-
+                        
+                        // TODO
+                        // remove the px string from these values before return. 
                         corn[0] = prop.top;
                         corn[1] = prop.left;
                 
@@ -210,22 +212,46 @@
         }(),
 
         /**
+         * Autoplay API.
+         */
+        autoplay = function (tuor) {
+            var timerId = null,
+                api = null;
+            
+            api = {
+                // TODO
+                // the callback delay must be an parameters and not a fixed value
+                start : function () {
+                    $('body').live('keyup', api.stop);
+                    
+                    tuor.start();
+                    
+                    timerId = setInterval(function() {
+                        tuor.next();
+                    }, 3000);
+                }, 
+                stop : function () {
+                    // WARNING
+                    // jQuery bind this with the element that is receiving the
+                    // event keyup
+                    $('body').die('keyup', api.stop);
+                    clearInterval(timerId);
+                }
+            };
+
+            return api;
+        },
+
+        /**
          * Tour API.
          */
         tuor = {
             init : function (steps) {
                 sequencer.init(steps);
             },
-            start: function () { 
-                var tt = tooltip(sequencer.get());
-
-                overlay.show();
-                
-                viewport.makeVisible( tt );
-
-                tt.show();
-                
-                $('body').live('keyup', function(ev) {
+            events : {
+                keyup: function (ev) {
+                    console.log("keyup");
                     switch (ev.which) {
                         case 27: // esc key
                             tuor.stop();
@@ -237,7 +263,18 @@
                             tuor.next();
                             break;
                     }
-                });
+                } 
+            },
+            start: function () { 
+                var tt = tooltip(sequencer.get()); // get active element
+
+                overlay.show(); // show the overlay
+                
+                viewport.makeVisible( tt ); // move the viewport if needed
+
+                tt.show(); // show the active element
+                
+                $('body').live('keyup', tuor.events.keyup); // bind key events
             },
             next : function () {
                 var active = tooltip(sequencer.get()); // get active element
@@ -260,12 +297,12 @@
                 active.toogle(); // show element
             },
             stop : function () {
+                $('body').die('keyup', tuor.events.keyup); // unbind key events
+                
+                tooltip(sequencer.get()).hide(); // hide active element
 
-                // unbind the events!!
-
-                tooltip(sequencer.get()).hide();
-
-                overlay.hide();
+                // TODO call destroy instead hide
+                overlay.hide(); // remove the overlay
             }
         },
 
@@ -273,94 +310,19 @@
          * Plugin default settings.
          */
         settings = {
-	    autoplay: true, // starts automatically
-	    overlay: true, // create an overlay over the page ?
+	    autoplay : true, // starts automatically
 	    steps: [] // sequence of tooltips which compose the web tour
-        },
+        };
 
-        autoplayId = null;
-
-    /**
-     *
-     */
     $.tuor = function(options) {
 	$.extend(settings, options);
 
-	tuor.init(options.steps);
+	tuor.init(settings.steps);
 
-        tuor.start();
+        if (settings.autoplay)
+            autoplay(tuor).start();
+        else
+            tuor.start();
     };
 
 })(jQuery, document, window);
-
-/*
-	// autoplay by default for testing purpose
-        autoplayId = setInterval(function() {
-            var active = null;
-           
-            // sequence active element
-            active = sequencer.get();
-            
-            // hide the active tooltip
-            tooltip(active).toogle();
-
-            // move back or fordward in the sequence
-            sequencer.next();
-            // sequencer.back();
-            
-            // get the active element after move the sequence
-            active = sequencer.get();
-            
-            // show the new active
-            tooltip(active).toogle();
-        }, 3000);
-
-
-Tour = function () {
-    return {
-        init: function () {
-            // build html elements
-            // 
-
-                        $('body').live('keyup', function(ev) {
-                            switch (ev.which) {
-                                case 27: // esc key
-                                    alert('fire close event');
-                                    break;
-                                case 37: // left arrow
-                                    alert('fire prev event');
-                                    break;
-                                case 39: // right arrow
-                                    alert('fire next event');
-                                    break;
-                            }
-                        });
-
-
-        }
-
-        start : function (steps = [], autoplay = true) {
-            
-        },
-        stop : function () {
-            
-        }
-    };
-};
-
-                        $('body').live('keyup', function(ev) {
-                            switch (ev.which) {
-                                case 27: // esc key
-                                    alert('fire close event');
-                                    break;
-                                case 37: // left arrow
-                                    alert('fire prev event');
-                                    break;
-                                case 39: // right arrow
-                                    alert('fire next event');
-                                    break;
-                            }
-                        });
-
-
-*/
