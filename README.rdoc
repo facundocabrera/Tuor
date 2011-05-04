@@ -1,2 +1,17 @@
-Idea + Source:
-http://tympanus.net/Development/WebsiteTour/indexAuto.html
+= TUOR plugin 
+This plugin was inspirated by this[http://tympanus.net/Development/WebsiteTour/indexAuto.html] implementation.
+
+= Requeriments
+
+* High customizable by CSS
+* Accesible
+* Keep it simple
+
+= Browsers supported
+* IE 7, 8, 9
+* Firefox 3.6 and later
+* Chrome 
+* Safari
+* Opera
+* Mobile?
+
