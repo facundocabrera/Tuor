@@ -40,7 +40,7 @@
                     if(index < 0) index = seq.length -1;
 		},
 		go: function (step) {
-		    index = step;
+		    (step >= 0 && step < seq.length) ? index = step : index = 0;
 		},
 		get: function () {
 		    return seq[index];
@@ -274,7 +274,7 @@
 
                 tt.show(); // show the active element
                 
-                $('body').live('keyup', tuor.events.keyup); // bind key events
+                // $('body').live('keyup', tuor.events.keyup); // bind key events
             },
             next : function () {
                 var active = tooltip(sequencer.get()); // get active element
@@ -296,13 +296,24 @@
                 viewport.makeVisible( active ); // move the viewport if neccesary
                 active.toogle(); // show element
             },
-            stop : function () {
-                $('body').die('keyup', tuor.events.keyup); // unbind key events
+            go : function (n) {
+                var active = tooltip(sequencer.get()); // get active element
+ 
+                active.hide(); // hide active
+                sequencer.go(n); // jump
                 
+                active = tooltip(sequencer.get()); // get active element
+                viewport.makeVisible( active ); // move the viewport if neccesary
+                active.show(); // show element
+            },
+            stop : function () {
                 tooltip(sequencer.get()).hide(); // hide active element
 
                 // TODO call destroy instead hide
                 overlay.hide(); // remove the overlay
+            },
+            destroy : function () {
+                $doc.unbind('.tuor');
             }
         },
 
@@ -310,19 +321,62 @@
          * Plugin default settings.
          */
         settings = {
-	    autoplay : true, // starts automatically
-	    steps: [] // sequence of tooltips which compose the web tour
+	    autoplay : false, // starts automatically
+            controls : false, // append this control element to each tooltip
+	    steps: []         // tooltips which compose the web tour
         };
 
     $.tuor = function(options) {
+        var bot = null;
+
 	$.extend(settings, options);
 
 	tuor.init(settings.steps);
 
-        if (settings.autoplay)
-            autoplay(tuor).start();
-        else
+        $doc.bind('start.tuor', function (ev) {
+            console.log('start.tuor');
             tuor.start();
+        });
+
+        $doc.bind('stop.tuor', function (ev) {
+            tuor.stop();
+        });
+
+        $doc.bind('go.tuor', function (ev, n) {
+            tuor.go(n);
+        });
+
+        $doc.bind('run.autoplay.tuor', function (ev) {
+            // console.log('start.autoplay.tuor');
+            // TODO
+            // This must be singleton
+            bot = autoplay(tuor);
+            bot.start();
+        });
+
+        $doc.bind('stop.autoplay.tuor', function (ev) {
+            // TODO
+            // This must be singleton
+            if(bot !== null) {
+                bot.stop();
+                bot = null;
+            }
+        });
+
+        $doc.bind('next.tuor', function (ev) {
+            tuor.next();
+        });
+        $doc.bind('prev.tuor', function (ev) {
+            tuor.prev();
+        });
+
+        $doc.bind('keyup.tuor', tuor.events.keyup);
+
+        $doc.bind('destroy.tuor', function (ev){
+            if(bot !== null) bot.stop();
+            tuor.stop();
+            tuor.destroy();
+        });
     };
 
 })(jQuery, document, window);

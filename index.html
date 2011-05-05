@@ -14,6 +14,22 @@
                 border: 1px solid #333;
                 background-color: #FFCC33;
             }
+
+            /** controls */
+            .controls {
+                border: 1px solid #333;
+                border-radius: 5px 5px 5px 5px;
+                box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            }
+    
+            .controls .steps {
+                display: inline;
+            }
+
+            .controls .steps .step {
+                display: inline;
+                list-style-position: inside;
+            }
 	</style>
 
 	<script src="jquery-1.5.2.js"></script>
@@ -23,7 +39,6 @@
 	    $(document).ready(function () {
 		// Tuor instance.
                 $.tuor({
-                    autoplay: true, // we want autoplay ???
                     steps: [ // sequence of tooltips
 			{ el: $('.feature-1'), place: 'L', tooltip: $('.tooltip') },
 			{ el: $('.feature-2'), place: 'L', tooltip: $('.tooltip') },
@@ -33,10 +48,27 @@
 			{ el: $('.feature-6'), place: 'L', tooltip: $('.tooltip') },
 			{ el: $('.feature-7'), place: 'L', tooltip: $('.tooltip') },
 			{ el: $('.feature-8'), place: 'L', tooltip: $('.tooltip') },
-			{ el: $('.feature-9'), place: 'L', tooltip: $('.tooltip') },
+			{ el: $('.feature-9'), place: 'L', tooltip: $('.tooltip') }
 		    ]
 		});
 	    });
+
+            // controls 
+            $(document).ready(function () {
+                var nav = $('.controls');
+                
+                nav.delegate('.go', 'click', function() {
+                    alert( $(this).html() );
+                });
+
+                nav.delegate('.next', 'click', function() {
+                    alert( 'fire next event' );
+                });
+            });
+
+            $(document).ready(function() {
+                $(this).triggerHandler('stop.tuor');
+            });
 	</script>
     </head>
     <body>
@@ -44,12 +76,28 @@
 
         <!-- Website tour format -->
 	<div class="tour">
-	    <div class="tooltip tooltip-feature-1">
+	    <div class="tooltip">
 		<h4>FEATURE 1</h4>
 		<p>The feature 1 bla bla bla bla bla bla</p>
 
-                <span class="arrow"></span><!-- add this if you want to show arrows -->
-	    </div>
+                <span class="arrow"></span><!-- add this if you want to show arrows --> 
+
+                <div class="controls">
+                    <ul class="steps">
+                        <li class="step"><span class="button go">1</span></li>
+                        <li class="step"><span class="button go">2</span></li>
+                        <li class="step"><span class="button go">3</span></li>
+                        <li class="step"><span class="button go">4</span></li>
+                        <li class="step"><span class="button go">5</span></li>
+                        <li class="step"><span class="button go">6</span></li>
+                        <li class="step"><span class="button go">7</span></li>
+                        <li class="step"><span class="button go">8</span></li>
+                        <li class="step"><span class="button go">9</span></li>
+                    </ul>
+
+                    <span class="button next">continue</span>
+                </div>
+            </div>
 	</div>
 
         <!-- Website content -->
