@@ -1,0 +1,15 @@
+/**
+ * IE >= 6
+ * position: fixed (now works)
+ * @see http://tagsoup.com/cookbook/css/fixed/
+ */
+@media screen {
+    * html {
+        overflow-y: hidden;
+    }
+    
+    * html body {
+        height: 100%;
+        overflow: auto;
+    }
+}
