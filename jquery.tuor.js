@@ -372,10 +372,13 @@
 
         $doc.bind('keyup.tuor', tuor.events.keyup);
 
-        $doc.bind('destroy.tuor', function (ev){
-            if(bot !== null) bot.stop();
-            tuor.stop();
+        $doc.bind('destroy.tuor', function (ev) { 
             tuor.destroy();
+
+            if(bot !== null) 
+                bot.stop();
+            
+            tuor.stop();
         });
     };
 
