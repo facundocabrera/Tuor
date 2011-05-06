@@ -1,17 +1,35 @@
 = TUOR plugin 
-This plugin was inspirated by this[http://tympanus.net/Development/WebsiteTour/indexAuto.html] implementation.
+Source[http://tympanus.net/Development/WebsiteTour/indexAuto.html].
 
-= Requeriments
+== API
+The idea is interact with the plugin using a set of custom events namespaced as 
+*.tuor which are listening from document element.
 
-* High customizable by CSS
+=== start/stop events
+* $(document).triggerHandler('start.tuor');
+* $(document).triggerHandler('stop.tuor');
+
+=== navigation events
+* $(document).triggerHandler('next.tuor');
+* $(document).triggerHandler('prev.tuor');
+* $(document).triggerHandler('go.tuor', [n]);
+
+=== autoplay events
+* $(document).triggerHandler('run.autoplay.tuor');
+* $(document).triggerHandler('stop.autoplay.tuor');
+
+=== destroy
+* $(document).triggerHandler('run.autoplay.tuor');
+
+== Requeriments
+* High customizable.
 * Accesible
 * Keep it simple
 
-= Browsers supported
-* IE 7, 8, 9
-* Firefox 3.6 and later
-* Chrome 
+== Browsers supported
+* IE >= 6 ?
+* Firefox
+* Chrome
 * Safari
 * Opera
-* Mobile?
-
+* Mobile? (I'll need to upgrade my phone nokia 1100)
