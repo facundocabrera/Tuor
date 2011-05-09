@@ -16,22 +16,16 @@
     You should have received a copy of the GNU General Public License
     along with Tuor.  If not, see <http://www.gnu.org/licenses/>.
 */
-.tour {
+.tuor {
     visibility: hidden;
 }
 
-.tour .tooltip {
+.tuor .tooltip {
     position: absolute;
-    
     z-index: 1000;
-    
-    background-color: white;
-    border-radius: 5px;
-
-    padding: 5px;
 }
 
-.tour .tooltip.visible {
+.tuor .tooltip.visible {
     visibility: visible;
 }
 
@@ -55,6 +49,7 @@
 .arrow {
     position: absolute;
     background-color: transparent;
+    background-image:url(arrow.png);
     background-repeat: no-repeat;
 }
 
@@ -64,9 +59,8 @@
 .arrow_TR,
 .arrow_BL,
 .arrow_BR {
-    background-image:url(topbottom.png);
-    width:13px;
-    height:7px;
+    width: 45px;
+    height: 23px;
 }
 
 .arrow_L,
@@ -75,72 +69,104 @@
 .arrow_LB,
 .arrow_RT,
 .arrow_RB {
-    background-image:url(leftright.png);
-    width:7px;
-    height:13px;
+    width: 23px;
+    height: 45px;
 }
 
+/* top side */
+.arrow_T, .arrow_TL, .arrow_TR {
+    background-position: 0px 0px;
+}
+
+/* center */
 .arrow_T {
-    background-position:0px -7px;
-    top:-7px;
-    left:50%;
-    margin-left:-3.5px;
+    top: -23px;
+    left: 50%;
+    margin-left: -22.5px;
 }
+
+/* left */
 .arrow_TL {
-    background-position:0px -7px;
-    top:-7px;
-    left:5px;
+    top: -23px;
+    left: 5px;
 }
+
+/* right */
 .arrow_TR {
-    background-position:0px -7px;
-    top:-7px;
-    right:5px;
+    top: -23px;
+    right: 5px;
 }
+
+/* bottom side */
+.arrow_B, .arrow_BL, .arrow_BR {
+    background-position: 0px -24px;
+}
+
+/* center */
 .arrow_B {
-    background-position:0px 0px;
-    bottom:-7px;
-    left:50%;
-    margin-left:-3.5px;
+    bottom: -23px;
+    left: 50%;
+    margin-left: -22.5px;
 }
+
+/* left */
 .arrow_BL {
-    background-position:0px 0px;
-    bottom:-7px;
-    left:5px;
+    bottom: -23px;
+    left: 5px;
 }
+/* right */
 .arrow_BR {
-    background-position:0px 0px;
-    bottom:-7px;
-    right:5px;
+    bottom: -23px;
+    right: 5px;
 }
+
+/* left side */
+.arrow_L, .arrow_LT, .arrow_LB {
+    background-position: 0px -95px;
+}
+
+/* center */
 .arrow_L {
-    background-position:-7px 0px;
-    top:50%;
-    margin-top:-6.5px;
-    left:-7px;
+    top: 50%;
+    margin-top: -22.5px;
+    left:-23px;
 }
+
+/* top */
 .arrow_LT {
-    background-position:-7px 0px;
     top:5px;
-    left:-7px;
+    left:-23px;
 }
+
+/* bottom */
 .arrow_LB {
-    background-position:-7px 0px;
     bottom:5px;
-    left:-7px;
+    left:-23px;
 }
+
+/* right side */
+.arrow_R, .arrow_RT, .arrow_RB {
+    background-position: 0px -48px;
+}
+
+/* center */
 .arrow_R {
-    background-position:0px 0px;
-    top:50%;
-    margin-top:-6.5px;
-    right:-7px;
+    /* move %50 and after -22.5px (half of the arrow) */
+    top: 50%;
+    margin-top: -22.5px;
+    /* move arrow out of the tooltip parent */
+    right: -23px;
 }
+
+/* top */
 .arrow_RT {
-    background-position:0px 0px;
     top:5px;
-    right:-7px;
+    right:-23px;
 }
+
+/* bottom */
 .arrow_RB {
-    background-position:0px 0px;
-    bottom:5px;
-    right:-7px;
+    bottom: 5px;
+    right: -23px;
 }
+

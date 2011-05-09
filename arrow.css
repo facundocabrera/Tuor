@@ -1,0 +1,33 @@
+
+.arrow_up {
+    width: 45px;
+    height: 23px;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+}
+
+.arrow_down {
+    width: 45px;
+    height: 23px;
+    background-position: 0px -24px;
+    background-repeat: no-repeat;
+}
+
+.arrow_right { 
+    width: 23px;
+    height: 45px;
+    background-position: 0px -48px;
+    background-repeat:no-repeat;
+}
+
+.arrow_left {
+    width:23px;
+    height:45px;
+    background-position: 0px -95px;
+    background-repeat:no-repeat;
+}
+
+.arrow_up, .arrow_down, .arrow_right, .arrow_left {
+    background-image:url(arrow.png);
+}
+
