@@ -16,6 +16,12 @@
                 background-color: #FFCC33;
             }
 
+            .tuor .tooltip {
+                padding: 0 5px;
+                border: 2px solid #666;
+                background-color: #FFF;
+            }
+
             /** controls */
             .controls {
                 border: 1px solid #333;
@@ -56,19 +62,20 @@
 
             // controls 
             $(document).ready(function () {
-                var nav = $('.controls');
-                
+                var nav = $('.controls'),
+                    doc = $(this);
+
                 nav.delegate('.go', 'click', function() {
-                    alert( $(this).html() );
+                    doc.triggerHandler( 'go.tuor', [$(this).html()-1] );
                 });
 
                 nav.delegate('.next', 'click', function() {
-                    alert( 'fire next event' );
+                    doc.triggerHandler( 'next.tuor' );
                 });
             });
 
             $(document).ready(function() {
-                $(this).triggerHandler('stop.tuor');
+                $(this).triggerHandler( 'start.tuor' );
             });
 	</script>
     </head>
@@ -76,7 +83,7 @@
 	<h1>Website tour made easy</h1>
 
         <!-- Website tour format -->
-	<div class="tour">
+	<div class="tuor">
 	    <div class="tooltip">
 		<h4>FEATURE 1</h4>
 		<p>The feature 1 bla bla bla bla bla bla</p>
