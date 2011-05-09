@@ -107,9 +107,8 @@
             if (overlay === null) {
                 overlay = $('<div>').addClass('overlay').hide();
 
-
                 $(doc).ready(function() {
-                    $('body').prepend(overlay);
+                    $('.tuor').prepend(overlay);
                 });
             }
 

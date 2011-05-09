@@ -29,7 +29,7 @@
     visibility: visible;
 }
 
-.overlay {
+.tuor .overlay {
     position: fixed;
     
     width: 100%;
@@ -44,6 +44,8 @@
 
     opacity:0.5;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+
+    visibility: visible;
 }
 
 .arrow {
