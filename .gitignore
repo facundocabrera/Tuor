@@ -1,0 +1,6 @@
+# Podemos especificar archivos individuales
+.DS_Store
+
+# O usar comodines
+*~
+*.swp
