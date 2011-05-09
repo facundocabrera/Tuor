@@ -247,6 +247,10 @@
         tuor = {
             init : function (steps) {
                 sequencer.init(steps);
+
+                $(document).ready(function(){
+                    $('body').prepend( $('.tuor').remove() );
+                });
             },
             events : {
                 keyup: function (ev) {
