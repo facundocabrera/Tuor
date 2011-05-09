@@ -248,6 +248,7 @@
             init : function (steps) {
                 sequencer.init(steps);
 
+                // this is necesary for correct positioning using the document as own cordinate system.
                 $(document).ready(function(){
                     $('body').prepend( $('.tuor').remove() );
                 });
