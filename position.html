@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+    <head> 
+        <link rel="stylesheet" href="jquery.tuor.iefix.css" type="text/css" />
+        <link rel="stylesheet" href="jquery.tuor.css" type="text/css" />
+
+        <style>
+            .feature {
+                position: absolute;
+                top: 40%;
+                left: 0%;
+                right: 80%;
+                bottom: 40%;
+                background-color: #CFCFCF;
+            }
+
+            .tuor .tooltip {
+                padding: 0 5px;
+                border: 2px solid #666;
+                background-color: #FFF;
+            }
+
+            .r, .rt, .rb {
+                margin-right: 23px; /* extra space needed by the right arrow */
+            }
+
+            .l, .lt, .lb {
+                margin-left: 23px;  /* extra space needed by the left arrow */
+            }
+
+            .b, .bl, .br {
+                margin-bottom: 23px; /* extra space needed by the down arrow */
+            }
+
+            .t, .tl, .tr {
+                margin-top: 23px; /* extra space needed by the up arrow */
+            }
+        </style>
+        
+        <script src="jquery-1.5.2.js"></script>
+	<script src="jquery.tuor.js"></script>
+        <script>
+	    $(document).ready(function () {
+		// Tuor instance.
+                $.tuor({
+                    steps: [ // sequence of tooltips
+			{ el: $('.feature'), place: 'R',  tooltip: $('.tooltip.r')  },
+			{ el: $('.feature'), place: 'RT', tooltip: $('.tooltip.rt') },
+			{ el: $('.feature'), place: 'RB', tooltip: $('.tooltip.rb') },
+			{ el: $('.feature'), place: 'L',  tooltip: $('.tooltip.l')  },
+			{ el: $('.feature'), place: 'LT', tooltip: $('.tooltip.lt') },
+			{ el: $('.feature'), place: 'LB', tooltip: $('.tooltip.lb') },
+			{ el: $('.feature'), place: 'B',  tooltip: $('.tooltip.b')  },
+			{ el: $('.feature'), place: 'BL', tooltip: $('.tooltip.bl') },
+			{ el: $('.feature'), place: 'BR', tooltip: $('.tooltip.br') },
+			{ el: $('.feature'), place: 'T',  tooltip: $('.tooltip.t')  },
+			{ el: $('.feature'), place: 'TL', tooltip: $('.tooltip.tl') },
+			{ el: $('.feature'), place: 'TR', tooltip: $('.tooltip.tr') }
+		    ]
+		});
+
+                $(this).triggerHandler('start.tuor');
+	    });
+	</script>
+    </head>
+    <body>
+        <!-- HTML embbed for tour purpose -->
+        <div class="tuor">
+            
+            <div class="tooltip r">
+                <h1>Place R (right center)</h1>
+                <p>Check the style for .r class</p>
+        
+                <span class="arrow"></span>
+            </div>
+            <div class="tooltip rt">
+                <h1>Place RT (right top)</h1>
+                <p>Check the style for .rt class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+            <div class="tooltip rb">
+                <h1>Place RB (right bottom)</h1>
+                <p>Check the style for .rb class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+
+            <div class="tooltip l">
+                <h1>Place L (left center)</h1>
+                <p>Check the style for .l class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+            <div class="tooltip lt">
+                <h1>Place LT (left top)</h1>
+                <p>Check the style for .lt class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+            <div class="tooltip lb">
+                <h1>Place LB (left bottom)</h1>
+                <p>Check the style for .lb class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+            
+            <div class="tooltip b">
+                <h1>Place B (bottom center)</h1>
+                <p>Check the style for .b class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+            <div class="tooltip bl">
+                <h1>Place BL (bottom left)</h1>
+                <p>Check the style for .bl class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+            <div class="tooltip br">
+                <h1>Place BR (bottom right)</h1>
+                <p>Check the style for .br class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+
+            <div class="tooltip t">
+                <h1>Place T (top center)</h1>
+                <p>Check the style for .t class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+            <div class="tooltip tl">
+                <h1>Place TL (top left)</h1>
+                <p>Check the style for .tl class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+            <div class="tooltip tr">
+                <h1>Place TR (top right)</h1>
+                <p>Check the style for .tr class</p>
+        
+                <span class="arrow"></span>    
+            </div>
+
+        </div>
+
+        <!-- Element to be highlited -->
+        <div class="feature"></div>
+    </body>
+</html>
