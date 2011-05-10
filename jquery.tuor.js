@@ -248,14 +248,17 @@
             init : function (steps) {
                 sequencer.init(steps);
 
-                // this is necesary for correct positioning using the document as own cordinate system.
-                $(document).ready(function(){
-                    $('body').prepend( $('.tuor').remove() );
+                // this is necesary for correct positioning using the document 
+                // as own cordinate system.
+                $(document).ready(function() {
+                    $('body').prepend( 
+                         // preserve events attached to the elements
+                        $('.tuor').detach()
+                    );
                 });
             },
             events : {
                 keyup: function (ev) {
-                    console.log("keyup");
                     switch (ev.which) {
                         case 27: // esc key
                             tuor.stop();
@@ -318,7 +321,7 @@
                 $doc.unbind('.tuor');
             },
 
-            // maybe we can add some shortcuts here.
+            // maybe we can add some shortcuts here. (This need a code refactoring)
             msg : function (el, prop) {
                 // after the init call ...
 
@@ -347,10 +350,6 @@
      */
     $.tuor = function(param) {
         var bot = null;
-
-	/* 
-
-        */
 
         $doc.bind('start.tuor', function (ev) {
             tuor.start();
