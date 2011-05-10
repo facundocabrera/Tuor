@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+    <head> 
+        <link rel="stylesheet" href="jquery.tuor.iefix.css" type="text/css" />
+        <link rel="stylesheet" href="jquery.tuor.css" type="text/css" />
+
+        <style>
+            .feature {
+                position: absolute;
+                top: 40%;
+                left: 0%;
+                right: 80%;
+                bottom: 40%;
+                background-color: #CFCFCF;
+            }
+
+            .tuor .tooltip {
+                padding: 0 5px;
+                border: 2px solid #666;
+                background-color: #FFF;
+            }
+
+            .r, .rt, .rb {
+                margin-right: 23px; /* extra space needed by the right arrow */
+            }
+
+            .l, .lt, .lb {
+                margin-left: 23px;  /* extra space needed by the left arrow */
+            }
+
+            .b, .bl, .br {
+                margin-bottom: 23px; /* extra space needed by the down arrow */
+            }
+
+            .t, .tl, .tr {
+                margin-top: 23px; /* extra space needed by the up arrow */
+            }
+        </style>
+        
+        <script src="jquery-1.5.2.js"></script>
+	<script src="jquery.tuor.js"></script>
+        <script>
+	    $(document).ready(function () {
+		var tip = [], 
+                    prop = {
+                        top: '50%',
+                        left: '50%'
+                    };
+                
+                // tuor init
+                $.tuor();
+
+                // calculate the center position
+                tip = $('.tooltip');
+                
+                prop['margin-top'] = '-' + tip.height()/2 + 'px';
+                prop['margin-left'] = '-' + tip.width()/2 + 'px';
+                
+                // method name followed by the arguments
+                $.tuor('msg', tip, prop);
+	    });
+	</script>
+    </head>
+    <body>
+        <!-- HTML embbed for tour purpose -->
+        <div class="tuor">
+            <div class="tooltip r">
+                <h1>Hello Pipiripupi</h1>
+                <p>Check the new features taking the tour</p>
+            </div>
+        </div>
+
+        <!-- Element to be highlited -->
+        <div class="feature"></div>
+    </body>
+</html>

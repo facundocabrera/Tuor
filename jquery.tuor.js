@@ -277,8 +277,6 @@
                 viewport.makeVisible( tt ); // move the viewport if needed
 
                 tt.show(); // show the active element
-                
-                // $('body').live('keyup', tuor.events.keyup); // bind key events
             },
             next : function () {
                 var active = tooltip(sequencer.get()); // get active element
@@ -318,6 +316,20 @@
             },
             destroy : function () {
                 $doc.unbind('.tuor');
+            },
+
+            // maybe we can add some shortcuts here.
+            msg : function (el, prop) {
+                // after the init call ...
+
+                // show the overlay layer.
+                overlay.show();
+
+                // move viewport if necessary (code refactoring needed here!)
+                viewport.move(0);
+
+                // show the tooltip (refactoring here!!!) 
+                el.css(prop).addClass('visible');
             }
         },
 
@@ -330,15 +342,17 @@
 	    steps: []         // tooltips which compose the web tour
         };
 
-    $.tuor = function(options) {
+    /**
+     * Tuor plugin
+     */
+    $.tuor = function(param) {
         var bot = null;
 
-	$.extend(settings, options);
+	/* 
 
-	tuor.init(settings.steps);
+        */
 
         $doc.bind('start.tuor', function (ev) {
-            console.log('start.tuor');
             tuor.start();
         });
 
@@ -379,11 +393,20 @@
         $doc.bind('destroy.tuor', function (ev) { 
             tuor.destroy();
 
-            if(bot !== null) 
+            if(bot !== null)
                 bot.stop();
             
             tuor.stop();
         });
-    };
 
+        // public API prototype
+        if (tuor[param]) {
+            tuor[param].apply(tuor, Array.prototype.slice.call(arguments, 1));
+        } else if ( typeof param === 'object' || ! param ) {
+            $.extend(settings, param);
+            tuor.init(settings.steps);
+        } else {
+            $.error( 'Method ' +  param + ' does not exist on jQuery.tuor' );
+        }
+    };
 })(jQuery, document, window);
