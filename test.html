@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+    <head> 
+        <link rel="stylesheet" href="jquery.tuor.iefix.css" type="text/css" />
+        <link rel="stylesheet" href="jquery.tuor.css" type="text/css" />
+	
+        <style>
+	    /** stylesheet for the page content **/
+            .feature {
+		width: 100px;
+		height: 100px;
+                
+                margin: 5px;
+                padding: 5px;
+
+                border: 1px solid #333;
+                background-color: #FFCC33;
+            }
+
+            .tuor .tooltip {
+                padding: 0 5px;
+                border: 2px solid #666;
+                background-color: #FFF;
+            }
+
+            .widget {
+                width: 400px;
+            }
+	</style>
+
+	<script src="jquery-1.5.2.js"></script>
+	<script src="jquery.tuor.js"></script>
+	
+        <script>
+	    $(document).ready(function () {
+                $('.tuor').delegate('.start', 'click', function(ev) {
+                    $('.tuor .welcome').hide();
+                    $(document).triggerHandler('start.tuor');
+                });
+
+                $('.tuor').delegate('.next', 'click', function(ev) {
+                    alert('next');
+                    $(document).triggerHandler('next.tuor');
+                });
+                
+                $('.tuor').delegate('.stop', 'click', function(ev) {
+                    alert('stop');
+                    $(document).triggerHandler('stop.tuor');
+                });
+
+                $.tuor({
+                    steps: [
+                        { el: $('.feature-1'), tooltip: $('.one'), place: 'L' },
+                        { el: $('.feature-2'), tooltip: $('.two'), place: 'L' },
+                        { el: $('.feature-3'), tooltip: $('.three'), place: 'L' }
+                    ]
+                });
+                
+                $.tuor('msg', $('.tuor .welcome'), {top: '200px', left: '200px'});
+	    });
+	</script>
+    </head>
+    <body>
+        <header>
+            <h1>Website tour made easy</h1>
+        </header>
+
+        <div class="content">
+            <div class="widget feature-1">
+	        <h1>Widget header</h1>
+                <p>widget body here</p>
+            </div>  
+
+            <div class="widget feature-2">
+	        <h1>Widget header</h1>
+                <p>widget body here</p>
+            </div>  
+
+            <div class="widget feature-3">
+	        <h1>Widget header</h1>
+                <p>widget body here</p>
+            </div>  
+
+            <div class="widget">
+	        <h1>Widget header</h1>
+                <p>widget body here</p>
+            </div>
+
+            <div class="widget">
+                <div class="tuor">
+                    <div class="tooltip welcome">
+                        <h4>Hello User!</h4>
+                        <p>The site present new content! Please take a tour</p>
+
+                        <div class="controls">
+                            <button><span class="stop">No Thanks</span></button>
+                            <button><span class="start">Start Now!</span></button>
+                        </div>
+                    </div>
+
+                    <div class="tooltip one">
+                        <h4>Tooltip 1</h4>
+                        <p>The site present new content! Please take a tour</p>
+
+                        <div class="controls">
+                            <button><span class="next">next</span></button>
+                        </div>
+                    </div>
+
+                    <div class="tooltip two">
+                        <h4>Tooltip 2</h4>
+                        <p>The site present new content! Please take a tour</p>
+
+                        <div class="controls">
+                            <button><span class="next">next</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="tooltip three">
+                        <h4>Tooltip 3</h4>
+                        <p>The site present new content! Please take a tour</p>
+
+                        <div class="controls">
+                            <button><span class="stop">Finish</span></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
