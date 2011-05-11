@@ -250,12 +250,13 @@
 
                 // this is necesary for correct positioning using the document 
                 // as own cordinate system.
-                $(document).ready(function() {
+                // $(document).ready(function() {
+                //    alert("lalala");
                     $('body').prepend( 
                          // preserve events attached to the elements
                         $('.tuor').detach()
                     );
-                });
+                // });
             },
             events : {
                 keyup: function (ev) {
@@ -312,15 +313,14 @@
                 active.show(); // show element
             },
             stop : function () {
-                tooltip(sequencer.get()).hide(); // hide active element
+                tooltip(sequencer.get()).hide(); 
+                
+                overlay.hide();
 
-                // TODO call destroy instead hide
-                overlay.hide(); // remove the overlay
-            },
-            destroy : function () {
                 $doc.unbind('.tuor');
-            },
 
+                $('.tuor').remove();
+            },
             // maybe we can add some shortcuts here. (This need a code refactoring)
             msg : function (el, prop) {
                 // after the init call ...
@@ -340,65 +340,32 @@
          * Plugin default settings.
          */
         settings = {
-	    autoplay : false, // starts automatically
-            controls : false, // append this control element to each tooltip
+	    autoplay : false, // TODO starts automatically
+            controls : false, // TODO append this control element to each tooltip
 	    steps: []         // tooltips which compose the web tour
         };
 
     /**
-     * Tuor plugin
+     * Tuor plugin event API registration. (This must be run ONCE)
+     */
+    $doc.bind({
+        'start.tuor' : tuor.start, // create
+        'stop.tuor'  : tuor.stop,  // destroy
+
+        'next.tuor'  : tuor.next,  // next element
+        'prev.tuor'  : tuor.prev,  // previous element
+        'go.tuor'    : function (ev, n) { tuor.go(n); }, // jump to
+
+        'keyup.tuor' : tuor.events.keyup, // key events 
+
+        'play.tuor'  : tuor.play, // TODO start autoplay
+        'quit.tuor'  : tuor.quit, // TODO stop autoplay 
+    });
+
+    /**
+     * Tuor public API.
      */
     $.tuor = function(param) {
-        var bot = null;
-
-        $doc.bind('start.tuor', function (ev) {
-            tuor.start();
-        });
-
-        $doc.bind('stop.tuor', function (ev) {
-            tuor.stop();
-        });
-
-        $doc.bind('go.tuor', function (ev, n) {
-            tuor.go(n);
-        });
-
-        $doc.bind('run.autoplay.tuor', function (ev) {
-            // console.log('start.autoplay.tuor');
-            // TODO
-            // This must be singleton
-            bot = autoplay(tuor);
-            bot.start();
-        });
-
-        $doc.bind('stop.autoplay.tuor', function (ev) {
-            // TODO
-            // This must be singleton
-            if(bot !== null) {
-                bot.stop();
-                bot = null;
-            }
-        });
-
-        $doc.bind('next.tuor', function (ev) {
-            tuor.next();
-        });
-        $doc.bind('prev.tuor', function (ev) {
-            tuor.prev();
-        });
-
-        $doc.bind('keyup.tuor', tuor.events.keyup);
-
-        $doc.bind('destroy.tuor', function (ev) { 
-            tuor.destroy();
-
-            if(bot !== null)
-                bot.stop();
-            
-            tuor.stop();
-        });
-
-        // public API prototype
         if (tuor[param]) {
             tuor[param].apply(tuor, Array.prototype.slice.call(arguments, 1));
         } else if ( typeof param === 'object' || ! param ) {
