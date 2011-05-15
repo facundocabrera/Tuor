@@ -107,6 +107,8 @@
             if (overlay === null) {
                 overlay = $('<div>').addClass('overlay').hide();
 
+                // TODO
+                // Remove the document.ready dep here.
                 $(doc).ready(function() {
                     $('.tuor').prepend(overlay);
                 });
@@ -211,37 +213,6 @@
         }(),
 
         /**
-         * Autoplay API.
-         */
-        autoplay = function (tuor) {
-            var timerId = null,
-                api = null;
-            
-            api = {
-                // TODO
-                // the callback delay must be an parameters and not a fixed value
-                start : function () {
-                    $('body').live('keyup', api.stop);
-                    
-                    tuor.start();
-                    
-                    timerId = setInterval(function() {
-                        tuor.next();
-                    }, 3000);
-                }, 
-                stop : function () {
-                    // WARNING
-                    // jQuery bind this with the element that is receiving the
-                    // event keyup
-                    $('body').die('keyup', api.stop);
-                    clearInterval(timerId);
-                }
-            };
-
-            return api;
-        },
-
-        /**
          * Tour API.
          */
         tuor = {
@@ -249,14 +220,11 @@
                 sequencer.init(steps);
 
                 // this is necesary for correct positioning using the document 
-                // as own cordinate system.
-                // $(document).ready(function() {
-                //    alert("lalala");
-                    $('body').prepend( 
-                         // preserve events attached to the elements
-                        $('.tuor').detach()
-                    );
-                // });
+                // as own cordinate system
+                $('body').prepend(
+                    // preserve events attached to the elements
+                    $('.tuor').detach()
+                );
             },
             events : {
                 keyup: function (ev) {
@@ -340,26 +308,21 @@
          * Plugin default settings.
          */
         settings = {
-	    autoplay : false, // TODO starts automatically
-            controls : false, // TODO append this control element to each tooltip
-	    steps: []         // tooltips which compose the web tour
+	    steps: [] // tooltips which compose the web tour
         };
 
     /**
      * Tuor plugin event API registration. (This must be run ONCE)
      */
     $doc.bind({
-        'start.tuor' : tuor.start, // create
-        'stop.tuor'  : tuor.stop,  // destroy
+        'start.tuor' : tuor.start,                        // show the web tour
+        'stop.tuor'  : tuor.stop,                         // remove html + unbind events
 
-        'next.tuor'  : tuor.next,  // next element
-        'prev.tuor'  : tuor.prev,  // previous element
-        'go.tuor'    : function (ev, n) { tuor.go(n); }, // jump to
+        'next.tuor'  : tuor.next,                         // show next element
+        'prev.tuor'  : tuor.prev,                         // show previous element
+        'go.tuor'    : function (ev, n) { tuor.go(n); },  // jump to + show
 
-        'keyup.tuor' : tuor.events.keyup, // key events 
-
-        'play.tuor'  : tuor.play, // TODO start autoplay
-        'quit.tuor'  : tuor.quit, // TODO stop autoplay 
+        'keyup.tuor' : tuor.events.keyup                  // key events
     });
 
     /**
