@@ -1,5 +1,13 @@
 = TUOR plugin 
-Source[http://tympanus.net/Development/WebsiteTour/indexAuto.html].
+    Original Idea
+        * http://tympanus.net/Development/WebsiteTour/indexAuto.html
+    
+    CSS resources
+        * http://www.filamentgroup.com/lab/image_free_css_tooltip_pointers_a_use_for_polygonal_css/
+        * http://www.yuiblog.com/blog/2010/11/22/css-quick-tip-css-arrows-and-shapes-without-markup/
+
+    HTML5 resources
+        * http://code.google.com/p/html5resetcss/
 
 == API
 The idea is interact with the plugin using a set of custom events namespaced as 
@@ -27,9 +35,9 @@ The idea is interact with the plugin using a set of custom events namespaced as
 * Keep it simple
 
 == Browsers supported
-* IE >= 6 ?
-* Firefox
-* Chrome
+* IE 7+
+* Firefox 3.5+
+* Chrome 
 * Safari
 * Opera
-* Mobile? (I'll need to upgrade my phone nokia 1100)
+* Mobile? (I'll need to upgrade my nokia 1100)
