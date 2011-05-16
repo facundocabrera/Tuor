@@ -23,6 +23,10 @@
 .tuor .tooltip {
     position: absolute;
     z-index: 1000;
+    
+    border: 2px solid #666;
+    
+    background-color: #FFF;
 }
 
 .tuor .tooltip.visible {
@@ -50,125 +54,113 @@
 
 .arrow {
     position: absolute;
-    background-color: transparent;
-    background-image:url(arrow.png);
-    background-repeat: no-repeat;
-}
-
-.arrow_T,
-.arrow_B,
-.arrow_TL,
-.arrow_TR,
-.arrow_BL,
-.arrow_BR {
-    width: 45px;
-    height: 23px;
-}
-
-.arrow_L,
-.arrow_R,
-.arrow_LT,
-.arrow_LB,
-.arrow_RT,
-.arrow_RB {
-    width: 23px;
-    height: 45px;
+    
+    border: 20px solid transparent;
+    height: 0;
+    width: 0;
 }
 
 /* top side */
 .arrow_T, .arrow_TL, .arrow_TR {
-    background-position: 0px 0px;
-}
-
-/* center */
-.arrow_T {
-    top: -23px;
-    left: 50%;
-    margin-left: -22.5px;
-}
-
-/* left */
-.arrow_TL {
-    top: -23px;
-    left: 5px;
-}
-
-/* right */
-.arrow_TR {
-    top: -23px;
-    right: 5px;
+    top: -40px;        /* by 2 of .arrow border-width */
+    border-bottom-color: #666;
 }
 
 /* bottom side */
 .arrow_B, .arrow_BL, .arrow_BR {
-    background-position: 0px -24px;
+    top: 100%;         /* move the span out of the parent box */
+    border-top-color: #666;
 }
 
-/* center */
-.arrow_B {
-    bottom: -23px;
+/* top/bottom center */
+.arrow_T, .arrow_B {
     left: 50%;
-    margin-left: -22.5px;
+    margin-left: -10px; /* half of .arrow border-width */
 }
 
-/* left */
-.arrow_BL {
-    bottom: -23px;
+/* top/bottom left */
+.arrow_TL, .arrow_BL {
     left: 5px;
 }
-/* right */
-.arrow_BR {
-    bottom: -23px;
+
+/* top/bottom right */
+.arrow_TR, .arrow_BR {
     right: 5px;
 }
 
 /* left side */
 .arrow_L, .arrow_LT, .arrow_LB {
-    background-position: 0px -95px;
-}
-
-/* center */
-.arrow_L {
-    top: 50%;
-    margin-top: -22.5px;
-    left:-23px;
-}
-
-/* top */
-.arrow_LT {
-    top:5px;
-    left:-23px;
-}
-
-/* bottom */
-.arrow_LB {
-    bottom:5px;
-    left:-23px;
+    left : -40px;
+    border-right-color: #666;
 }
 
 /* right side */
 .arrow_R, .arrow_RT, .arrow_RB {
-    background-position: 0px -48px;
+    right: -40px;
+    border-left-color: #666;
 }
 
-/* center */
-.arrow_R {
-    /* move %50 and after -22.5px (half of the arrow) */
+/* left/right center */
+.arrow_L, .arrow_R {
     top: 50%;
-    margin-top: -22.5px;
-    /* move arrow out of the tooltip parent */
-    right: -23px;
+    margin-top: -10px;
 }
 
 /* top */
-.arrow_RT {
-    top:5px;
-    right:-23px;
+.arrow_LT, .arrow_RT {
+    top: 5px;
 }
 
 /* bottom */
-.arrow_RB {
-    bottom: 5px;
-    right: -23px;
+.arrow_LB, .arrow_RB {
+    bottom:5px;
 }
 
+/* inner arrow - custom the color with the tooltip bg */
+.arrow_B  > span, 
+.arrow_BL > span, 
+.arrow_BR > span {
+    position: absolute;
+
+    top: -20px;   /* base border-width */
+    left: -17px;  /* this border-width */
+    
+    border : 17px solid transparent;
+    border-top-color: #fff;
+}
+
+.arrow_T  > span, 
+.arrow_TL > span, 
+.arrow_TR > span {
+    position: absolute;
+
+    top: -14px;  /* check top 0 */
+    left: -17px; /* check left 0 */
+
+    border : 17px solid transparent;
+    border-bottom-color: #fff;
+}
+
+.arrow_R > span,
+.arrow_RT > span,
+.arrow_RB > span {
+    position: absolute;
+
+    top: -17px;                
+    left: -20px; 
+
+    border : 17px solid transparent;
+    border-left-color: #fff;
+}
+
+.arrow_L > span,
+.arrow_LT > span,
+.arrow_LB > span {
+    position: absolute;
+
+    top: -17px;
+    right: -20px;
+
+    border : 17px solid transparent;
+    border-right-color: #fff;
+}
