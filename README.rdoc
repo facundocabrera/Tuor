@@ -22,13 +22,6 @@ The idea is interact with the plugin using a set of custom events namespaced as
 * $(document).triggerHandler('prev.tuor');
 * $(document).triggerHandler('go.tuor', [n]);
 
-=== autoplay events
-* $(document).triggerHandler('run.autoplay.tuor');
-* $(document).triggerHandler('stop.autoplay.tuor');
-
-=== destroy
-* $(document).triggerHandler('run.autoplay.tuor');
-
 == Requeriments
 * High customizable.
 * Accesible
