@@ -1,37 +1,43 @@
-= TUOR plugin 
-    Original Idea
-        * http://tympanus.net/Development/WebsiteTour/indexAuto.html
-    
-    CSS resources
-        * http://www.filamentgroup.com/lab/image_free_css_tooltip_pointers_a_use_for_polygonal_css/
-        * http://www.yuiblog.com/blog/2010/11/22/css-quick-tip-css-arrows-and-shapes-without-markup/
-        * http://msdn.microsoft.com/en-us/library/cc351024(v=vs.85).aspx
+# TUOR plugin
 
-    HTML5 resources
-        * http://code.google.com/p/html5resetcss/
+## Requeriments
+ * High customizable.
+ * Accesible
+ * Keep it simple
 
-== API
-The idea is interact with the plugin using a set of custom events namespaced as 
-*.tuor which are listening from document element.
+## Browsers supported
+ * IE 7+
+ * Firefox 3.5+
+ * Chrome 
+ * Safari
+ * Opera
 
-=== start/stop events
-* $(document).triggerHandler('start.tuor');
-* $(document).triggerHandler('stop.tuor');
+## API
 
-=== navigation events
-* $(document).triggerHandler('next.tuor');
-* $(document).triggerHandler('prev.tuor');
-* $(document).triggerHandler('go.tuor', [n]);
+### start/stop events
+ * $(document).triggerHandler('start.tuor');
+ * $(document).triggerHandler('stop.tuor');
 
-== Requeriments
-* High customizable.
-* Accesible
-* Keep it simple
+### navigation events
+ * $(document).triggerHandler('next.tuor');
+ * $(document).triggerHandler('prev.tuor');
+ * $(document).triggerHandler('go.tuor', [n]);
 
-== Browsers supported
-* IE 7+
-* Firefox 3.5+
-* Chrome 
-* Safari
-* Opera
-* Mobile? (I'll need to upgrade my nokia 1100)
+### jQuery like callbacks?
+
+## References
+
+### Source
+ * [web site tour](http://tympanus.net/Development/WebsiteTour/indexAuto.html)
+
+### CSS resources
+ * [polygons](http://www.filamentgroup.com/lab/image_free_css_tooltip_pointers_a_use_for_polygonal_css/)
+ * [arrows without markup](http://www.yuiblog.com/blog/2010/11/22/css-quick-tip-css-arrows-and-shapes-without-markup/)
+ * [ie references](http://msdn.microsoft.com/en-us/library/cc351024(v=vs.85).aspx)
+
+### HTML5 resources
+ * [reset](http://code.google.com/p/html5resetcss/)
+
+### Markdown syntax
+ * [syntax](http://daringfireball.net/projects/markdown/basics)
+ * [online editor](http://daringfireball.net/projects/markdown/dingus)
