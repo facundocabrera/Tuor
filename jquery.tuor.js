@@ -45,7 +45,7 @@
 		get: function () {
 		    return seq[index];
 		}
-	    }
+	    };
 	}(),
 
         /**
