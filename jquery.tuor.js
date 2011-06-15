@@ -120,6 +120,9 @@
                 },
                 hide : function () {
                     overlay.hide();
+                },
+                isVisible: function () {
+                    return overlay.is(':visible');
                 }
             };
         }(),
@@ -228,16 +231,18 @@
             },
             events : {
                 keyup: function (ev) {
-                    switch (ev.which) {
-                        case 27: // esc key
-                            tuor.stop();
-                            break;
-                        case 37: // left arrow
-                            tuor.prev();
-                            break;
-                        case 39: // right arrow
-                            tuor.next();
-                            break;
+                    if (overlay.isVisible()) {
+                        switch (ev.which) {
+                            case 27: // esc key
+                                tuor.stop();
+                                break;
+                            case 37: // left arrow
+                                tuor.prev();
+                                break;
+                            case 39: // right arrow
+                                tuor.next();
+                                break;
+                        }
                     }
                 } 
             },
